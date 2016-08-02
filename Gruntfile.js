@@ -4,7 +4,7 @@ module.exports = function(grunt) {
 		pkg : grunt.file.readJSON('package.json'),
 		date : grunt.template.today("yyyy-mm-dd"),
 		jshint : {
-			files : [ 'Gruntfile.js' ]
+			files : [ 'Gruntfile.js','src/js/*' ]
 		},
 		clean : {
 			js : ['dist/js/*'],
@@ -20,33 +20,30 @@ module.exports = function(grunt) {
             },
             release: {//发布js
                 files: {
-                    'dist/js/easy-chat-<%= date %>.min.js': ['src/js/*.js']
+                    'dist/js/easy-chat-<%= pkg.version %>.min.js': ['src/js/*.js']
                 }
             }
 		},
 		compass: {
-			options: {
-				sassDir: 'src/sass',
-				relativeAssets: true
-			},
-			release :{
-				options: {
-					cssDir: 'dist/css'
+			release: {
+				options:{
+					cssDir: 'dist/css',
+					sassDir: 'src/sass',
+					outputStyle: 'compressed'
 				}
 			}
 		},
 		watch: {
 			html:{
                 files: ['demo.html'],
-                options: {livereload:true},
-                tasks: ['default']
+                options: {livereload:true}
             },
             css:{
             	files: ['dist/css/*.css'],
             	options: {livereload:true}
             },
             sass:{
-            	files: ['src/sass/*.sass'],
+            	files: ['src/sass/*.{sass,scss}'],
             	options: {livereload:true},
         		tasks: ['clean:css','compass']
             },
@@ -68,10 +65,19 @@ module.exports = function(grunt) {
 	        	options: {
 	        		open: true,
 	        		// 物理路径(默认为. 即根目录) 
-	        		base: ['./demo.html']
+	        		base: ['.']
 	        	}
 	    	}
-	   }
+		},
+		cssmin: {
+			dist: {
+				expand: true,
+		        cwd: 'dist/css/',
+		        src: ['*.css', '!*.min.css'],
+		        dest: 'dist/css/',
+		        ext: '.min.css'
+	   		}
+		}
 	});
 
 	/*grunt.event.on('watch', function(action, filepath, target) {
