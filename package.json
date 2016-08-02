@@ -1,0 +1,28 @@
+{
+  "name": "easy-chat",
+  "description": "Client-side growl-like notifications with actions and auto-retry.",
+  "version": "0.1.0",
+  "license": "MIT",
+  "homepage": "http://github.hubspot.com/easy-chat",
+  "authors": [
+    "jiawj <jiawenjun2016@outlook.com>"
+  ],
+  "keywords": [
+    "client-side",
+    "chat"
+  ],
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-clean": "~0.4.0",
+    "grunt-contrib-compass": "~0.1.2",
+    "grunt-contrib-connect": "^1.0.2",
+    "grunt-contrib-jshint": "^1.0.0",
+    "grunt-contrib-uglify": "~0.1.2",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-lib-contrib": "^0.5.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/timestrom/easy-chat"
+  }
+}
