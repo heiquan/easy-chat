@@ -29,7 +29,7 @@ module.exports = function(grunt) {
 				options:{
 					cssDir: 'dist/css',
 					sassDir: 'src/sass',
-					outputStyle: 'compressed'
+					outputStyle: 'expanded'
 				}
 			}
 		},
@@ -45,7 +45,7 @@ module.exports = function(grunt) {
             sass:{
             	files: ['src/sass/*.{sass,scss}'],
             	options: {livereload:true},
-        		tasks: ['clean:css','compass']
+        		tasks: ['clean:css','compass','cssmin']
             },
             js: {
 		        files: ['src/js/*.js'],
@@ -65,17 +65,18 @@ module.exports = function(grunt) {
 	        	options: {
 	        		open: true,
 	        		// 物理路径(默认为. 即根目录) 
-	        		base: ['.']
-	        	}
+	        		base: ['./']
+	        	}	
 	    	}
 		},
 		cssmin: {
+			options: {  
+	            keepSpecialComments: 0  
+	        },
 			dist: {
-				expand: true,
-		        cwd: 'dist/css/',
-		        src: ['*.css', '!*.min.css'],
-		        dest: 'dist/css/',
-		        ext: '.min.css'
+		        files: {
+		        	'dist/css/easy-chat-<%= pkg.version %>.min.css':['dist/css/*.css','!dist/css/*.min.css']
+		        }
 	   		}
 		}
 	});
@@ -89,9 +90,9 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-compass');//sass生成css
 	grunt.loadNpmTasks('grunt-contrib-watch');//监控构建
 	grunt.loadNpmTasks('grunt-contrib-connect');//web服务器
-	//grunt.loadNpmTasks('grunt-contrib-livereload');//自动刷新browser
+	grunt.loadNpmTasks('grunt-contrib-cssmin');//压缩css
 
-	grunt.registerTask('default',['jshint','clean','uglify','compass']);
+	grunt.registerTask('default',['jshint','clean','uglify','compass','cssmin']);
 	grunt.registerTask('alive',['connect','watch']);
 	grunt.registerTask('test1',['uglify']);
 	grunt.registerTask('test2',['compass']);

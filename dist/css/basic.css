@@ -1,1 +1,4 @@
-html{background:#eee}
+/* line 5, ../../src/sass/basic.scss */
+div {
+  padding: 3px;
+}

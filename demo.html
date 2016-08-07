@@ -7,15 +7,27 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>easy-chat demo</title>
-    <link rel="stylesheet" type="text/css" media="screen" href="dist/css/easy-chat.css">
-    <script src="lib/jquery-3.1.0.min.js></script>
-    <script src="lib/template-3.0.3.min.js></script>
+    <link rel="stylesheet" type="text/css" media="screen" href="./dist/css/basic.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="./dist/css/chat.css">
 </head>
 <body>
-	<div id="chat">hello</div>
-	<div id="tpl-one">this is demo template.</div>
-	<div>zhen des</div>
-	<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> -->
-	<script src="dist/js/easy-chat-0.1.0.min.js></script>
+	<div id="chat" class="chat-content">
+		<div class="chat-left"></div>
+		<div class="chat-right"></div>
+	</div>
+	<script id="chat-groups" type="text/html">
+		<h3>group list/h3>
+	</script>
+	<script id="chat-messages" type="text/html">
+		<h3>message list</h3>
+	</script>
+
+	<!-- just test -->
+	<div id="demo">zhen des</div>
+	<script id="tpl-one" type="text/html">
+		{{ title }}
+	</script>
+	
+	<script data-main="./src/js/easy-chat" src="./lib/requirejs-2.1.11.min.js"></script>
 </body>
 </html>
